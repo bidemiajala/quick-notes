@@ -58,10 +58,6 @@ jobs:
       env:
         CI: true
       
-    - name: Generate test report
-      if: always()
-      run: npm run test:report || echo "Report generation skipped"
-      
     - name: Upload extension build
       uses: actions/upload-artifact@v4
       if: success()
