@@ -1,7 +1,5 @@
 # Quick Notes - QA Engineering Showcase 🧪
 
-> **My journey into reliable Playwright testing through a Chrome extension**
-
 Hey there! I'm passionate about **Software Quality** and wanted to create something that really shows what practical, working testing looks like. This Chrome extension for quick note-taking became my playground for exploring **Playwright's** core capabilities and demonstrating solid test automation fundamentals.
 
 ## 🎯 Why I Built This
