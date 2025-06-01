@@ -179,7 +179,7 @@ function App() {
     <div className={`app-container theme-${theme}`}>
       <div className="toolbar">
         <button onClick={handleNewSingleNote} className="new-note-btn" title="Create New Note (Ctrl+N)">
-          <span className="icon">✎</span> New Note
+          <span className="icon">✎</span> Create
         </button>
         <input
           id="search-input"

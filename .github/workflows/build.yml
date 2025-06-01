@@ -1,0 +1,78 @@
+name: Build and Test Extension
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Lint code (if available)
+      run: npm run lint || echo "No lint script found, skipping..."
+      continue-on-error: true
+      
+    - name: Build extension
+      run: npm run build
+      
+    - name: Check build output
+      run: |
+        ls -la dist/
+        # Verify essential files exist
+        test -f dist/manifest.json || exit 1
+        test -f dist/popup.html || exit 1
+        test -f dist/popup.js || exit 1
+        test -f dist/popup.css || exit 1
+        test -f dist/background.js || exit 1
+        echo "✅ All essential extension files are present"
+        
+    - name: Validate manifest.json
+      run: |
+        node -e "
+          const manifest = require('./dist/manifest.json');
+          if (!manifest.name || !manifest.version || !manifest.manifest_version) {
+            console.error('❌ Invalid manifest.json');
+            process.exit(1);
+          }
+          console.log('✅ manifest.json is valid');
+          console.log('Extension:', manifest.name, 'v' + manifest.version);
+        "
+        
+    - name: Install Playwright Chrome browser
+      run: npx playwright install chrome --with-deps
+      
+    - name: Run extension tests
+      run: npm test
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      if: success()
+      with:
+        name: extension-build-${{ github.sha }}
+        path: dist/
+        retention-days: 7
+        
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: test-results-${{ github.sha }}
+        path: |
+          playwright-report/
+          test-results/
+        retention-days: 7 

@@ -1,7 +1,7 @@
 /* Global Resets and Base Styles */
 body {
   margin: 0;
-  font-family: Arial, sans-serif; /* Changed font */
+  font-family: Arial, sans-serif;
   width: 380px;
   height: 480px;
   padding: 0;
@@ -9,7 +9,6 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  /* border-radius: 8px; */ /* 2. Removed per request */
 }
 
 /* Theme container */
@@ -18,8 +17,7 @@ body {
   flex-direction: column;
   height: 100%;
   transition: background-color 0.3s ease, color 0.3s ease;
-  /* border-radius: 8px; */ /* 2. Removed per request */
-  overflow: hidden; /* Ensures children don't break the rounded corners */
+  overflow: hidden;
 }
 
 /* Light Theme (Default) */
@@ -40,7 +38,7 @@ body {
   background-color: #e0e0e0;
   color: #333;
   border: 1px solid #ccc;
-  border-radius: 5px; /* Rounded corners for buttons */
+  border-radius: 5px;
 }
 .app-container.theme-light .toolbar button:hover {
   background-color: #d5d5d5;
@@ -97,7 +95,7 @@ body {
   background-color: #4a4a4a;
   color: #f1f1f1;
   border: 1px solid #555;
-  border-radius: 5px; /* Rounded corners for buttons */
+  border-radius: 5px;
 }
 .app-container.theme-dark .toolbar button:hover {
   background-color: #555555;
@@ -142,12 +140,12 @@ body {
   align-items: center;
   padding: 8px;
   gap: 8px;
-  flex-shrink: 0; /* Prevent toolbar from shrinking */
+  flex-shrink: 0;
 }
 
 .toolbar button {
   padding: 8px 12px;
-  border-radius: 4px; /* Reverted from 5px */
+  border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.2s ease, box-shadow 0.2s ease;
@@ -170,7 +168,7 @@ body {
   display: flex;
   flex-grow: 1;
   overflow: hidden; 
-  min-height: 0; /* Crucial for children to fill space and not cause overflow */
+  min-height: 0;
 }
 
 /* Sidebar Styles */
@@ -178,18 +176,16 @@ body {
   width: 130px; 
   flex-shrink: 0;
   overflow-y: auto; 
-  overflow-x: hidden; /* 3. Remove horizontal scroll */
+  overflow-x: hidden;
   padding-top: 5px;
-  padding-bottom: 10px; 
-  height: 100%; /* Ensure sidebar attempts to use full height of main-content */
+  height: 100%;
   box-sizing: border-box;
 }
 
-.sidebar p { /* For "No notes" message - was .sidebar-message */
+.sidebar p {
     padding: 10px;
     text-align: center;
     font-size: 13px;
-    /* margin: auto; */ /* Can be removed if sidebar is always full due to 10 notes */
 }
 
 .note-tab {
@@ -235,7 +231,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  height: 100%; /* Ensure editor attempts to use full height of main-content */
+  height: 100%;
   box-sizing: border-box;
 }
 
@@ -243,8 +239,8 @@ body {
   flex-grow: 1; 
   width: 100%;
   padding: 12px;
-  font-size: 12px; /* 6. Reduced font size from 14px */
-  line-height: 1.5; /* Adjusted line height for smaller font */
+  font-size: 12px;
+  line-height: 1.5;
   border-radius: 5px; 
   resize: none; 
   box-sizing: border-box;
@@ -252,7 +248,7 @@ body {
 }
 
 .note-editor textarea::placeholder {
-  font-size: 12px; /* 6. Reduced placeholder font size */
+  font-size: 12px;
   color: #999;
 }
 
@@ -280,7 +276,6 @@ body {
   font-weight: bold;
   margin-left: 5px;
 }
-/* Removed .char-count .warning-limit */
 
 /* Theme Toggle Switch Styles */
 .theme-toggle-switch {
@@ -290,7 +285,8 @@ body {
   position: relative;
   width: 50px;
   height: 26px;
-  margin-left: auto; 
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .theme-toggle-switch input {
@@ -306,46 +302,60 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc; 
-  transition: .4s;
+  background-color: #ddd;
+  transition: .3s;
   border-radius: 26px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .app-container.theme-dark .theme-toggle-slider {
-    background-color: #555;
+  background-color: #444;
 }
 
-.theme-toggle-slider:before { /* This is the Knob */
+.theme-toggle-slider:before {
   position: absolute;
-  content: ""; /* Ensure no icon content here */
+  content: "";
   height: 20px;
   width: 20px;
   left: 3px;
   bottom: 3px;
   background-color: white;
-  transition: .4s;
+  transition: .3s;
   border-radius: 50%;
-  box-shadow: 0 0 2px rgba(0,0,0,0.3);
-  z-index: 1; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 input:checked + .theme-toggle-slider {
-  background-color: #007bff; 
+  background-color: #007bff;
 }
 
 .app-container.theme-dark input:checked + .theme-toggle-slider {
-  background-color: #6ab7ff; 
-}
-
-input:focus + .theme-toggle-slider {
-  box-shadow: 0 0 1px #2196F3;
+  background-color: #555;
 }
 
 input:checked + .theme-toggle-slider:before {
   transform: translateX(24px);
 }
 
-/* Primary Button (New Note) Styles */
+/* Add icons to the toggle */
+.theme-toggle-slider::after {
+  content: "☀️";
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  z-index: 0;
+  transition: opacity 0.3s;
+}
+
+input:checked + .theme-toggle-slider::after {
+  content: "🌙";
+  left: auto;
+  right: 6px;
+}
+
+/* Primary Button (Create) Styles */
 .toolbar button.new-note-btn {
   background-color: #007bff;
   color: white;
@@ -382,8 +392,12 @@ input:checked + .theme-toggle-slider:before {
     min-height: 0; 
 }
 
-.sidebar {
-    padding-bottom: 10px; 
+/* General App Container adjustments based on theme in body */
+body[data-theme='dark'] {
+    
+}
+body[data-theme='light'] {
+
 }
 
 /* Scrollbar styling */
@@ -410,179 +424,4 @@ input:checked + .theme-toggle-slider:before {
 }
 .app-container.theme-dark ::-webkit-scrollbar-thumb:hover {
   background: rgba(255,255,255,0.3);
-}
-
-/* General App Container adjustments based on theme in body */
-body[data-theme='dark'] {
-    /* This is if you want to style the body itself,
-       but we are using .app-container for themes primarily */
-}
-body[data-theme='light'] {
-
-}
-
-/* Theme Toggle Switch Styles with Icons */
-.theme-toggle-switch {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-  width: 50px;
-  height: 26px;
-  margin-left: auto; 
-}
-
-.theme-toggle-switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.theme-toggle-slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc; 
-  transition: .4s;
-  border-radius: 26px;
-  /* For icon positioning inside */
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* This will be for icons */
-  padding: 0 4px; /* Space for icons if they are text */
-}
-
-.app-container.theme-dark .theme-toggle-slider {
-    background-color: #555;
-}
-
-/* The moving knob */
-.theme-toggle-slider::before {
-  position: absolute;
-  content: "";
-  height: 20px;
-  width: 20px;
-  left: 3px; /* Initial position for light mode */
-  bottom: 3px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-  box-shadow: 0 0 2px rgba(0,0,0,0.3);
-  z-index: 1; 
-}
-
-input:checked + .theme-toggle-slider::before { /* Knob position for dark mode */
-  transform: translateX(24px);
-}
-
-/* Icons directly as pseudo-elements on the slider track itself */
-.theme-toggle-slider::after { 
-    content: none !important;
-    position: absolute;
-    font-size: 14px;
-    line-height: 26px; 
-    width: 100%;
-    text-align: center; 
-    z-index: 0; 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 5px; /* Padding for icons */
-}
-
-/* Specific icon content based on theme and checked state */
-/* Light mode: sun visible when NOT checked (light theme active) */
-.app-container.theme-light .theme-toggle-slider::after {
-    content: '☀️'; /* Sun */
-    /* CSS to show only sun, hide moon or vice versa */
-}
-
-/* Dark mode: moon visible when CHECKED (dark theme active) */
-.app-container.theme-dark .theme-toggle-slider::after {
-    content: '🌙'; /* Moon */
-}
-
-/* Alternative: Single pseudo-element changing content (simpler) */
-.theme-toggle-slider::after {
-    content: '☀️'; /* Default to sun for light theme */
-    position: absolute;
-    left: 6px; /* Position for sun */
-    font-size: 14px;
-    line-height: 26px;
-    color: #444; /* Color for sun */
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    z-index: 0;
-}
-
-input:checked + .theme-toggle-slider::after { /* Dark mode is checked */
-    content: '🌙'; /* Change to moon */
-    left: auto;
-    right: 6px; /* Position for moon */
-    color: #f1f1f1; /* Color for moon */
-}
-
-/* If the slider itself has justify-content space-between for icons */
-/* This needs the icons to be actual elements or two pseudo-elements */
-
-/* Re-simplifying for sun/moon icons visibility based on theme on toggle */
-.theme-toggle-slider {
-    /* ... other styles ... */
-    position: relative; /* For absolute positioning of icons inside if needed */
-}
-
-.theme-toggle-slider .icon-sun,
-.theme-toggle-slider .icon-moon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 14px;
-    line-height: 1; /* For better emoji alignment */
-    transition: opacity 0.3s ease;
-    z-index: 0;
-}
-
-.theme-toggle-slider .icon-sun {
-    left: 5px;
-    opacity: 0; /* Hidden by default, shown by theme */
-}
-
-.theme-toggle-slider .icon-moon {
-    right: 5px;
-    opacity: 0; /* Hidden by default, shown by theme */
-}
-
-/* Control visibility based on theme and checkbox state */
-/* Light theme (checkbox NOT checked) */
-.app-container.theme-light input:not(:checked) + .theme-toggle-slider .icon-sun {
-    opacity: 1; 
-}
-.app-container.theme-light input:not(:checked) + .theme-toggle-slider .icon-moon {
-    opacity: 0; 
-}
-
-/* Dark theme (checkbox IS checked) */
-.app-container.theme-dark input:checked + .theme-toggle-slider .icon-moon {
-    opacity: 1;
-}
-.app-container.theme-dark input:checked + .theme-toggle-slider .icon-sun {
-    opacity: 0;
-}
-
-/* Case: Light theme UI, but toggle is set to activate Dark (so checkbox is checked) -> show moon */
-.app-container.theme-light input:checked + .theme-toggle-slider .icon-moon {
-    opacity: 1;
-}
-.app-container.theme-light input:checked + .theme-toggle-slider .icon-sun {
-    opacity: 0;
-}
-
-/* Case: Dark theme UI, but toggle is set to activate Light (so checkbox is NOT checked) -> show sun */
-.app-container.theme-dark input:not(:checked) + .theme-toggle-slider .icon-sun {
-    opacity: 1;
-}
-.app-container.theme-dark input:not(:checked) + .theme-toggle-slider .icon-moon {
-    opacity: 0;
 } 
