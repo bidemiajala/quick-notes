@@ -140,3 +140,12 @@ dist
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Playwright snapshots (not used in this streamlined project)
+**/*-snapshots/
+*.png
+*.jpg
+*.jpeg
+
+# Allure
+allure-results/

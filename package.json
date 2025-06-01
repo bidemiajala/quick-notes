@@ -12,6 +12,7 @@
     "@babel/preset-react": "^7.22.5",
     "@playwright/test": "^1.52.0",
     "@types/node": "^22.15.29",
+    "allure-playwright": "^3.2.2",
     "babel-loader": "^9.1.3",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.8.1",
@@ -25,6 +26,22 @@
   "scripts": {
     "start": "webpack serve --mode development --config webpack.config.js",
     "build": "webpack --mode production --config webpack.config.js",
-    "test": "npx playwright test"
-  }
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
+    "test:debug": "npx playwright test --debug",
+    "test:headed": "npx playwright test --headed",
+    "test:report": "npx playwright show-report",
+    "test:install": "npx playwright install chrome --with-deps",
+    "qa:build-and-test": "npm run build && npm run test",
+    "qa:full-report": "npm run qa:build-and-test && npm run test:report"
+  },
+  "keywords": [
+    "chrome-extension",
+    "notes",
+    "productivity",
+    "playwright",
+    "testing",
+    "qa"
+  ],
+  "description": "A QA-centered Chrome extension for quick note-taking with comprehensive Playwright test suite"
 }
