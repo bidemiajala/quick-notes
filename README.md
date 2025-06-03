@@ -1,4 +1,4 @@
-[![Build and Test Extension](https://github.com/bidemiajala/quick-notes/actions/workflows/build.yml/badge.svg)](https://github.com/bidemiajala/quick-notes/actions/workflows/build.yml) |
+[![Build and Test Extension](https://github.com/bidemiajala/quick-notes/actions/workflows/build.yml/badge.svg)](https://github.com/bidemiajala/quick-notes/actions/workflows/build.yml) 
 [![Playwright Tests Only](https://github.com/bidemiajala/quick-notes/actions/workflows/playwright.yml/badge.svg)](https://github.com/bidemiajala/quick-notes/actions/workflows/playwright.yml)
 # Quick Notes - QA Engineering Showcase 🧪
 
