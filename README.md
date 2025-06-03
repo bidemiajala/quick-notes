@@ -1,3 +1,5 @@
+[![Build and Test Extension](https://github.com/bidemiajala/quick-notes/actions/workflows/build.yml/badge.svg)](https://github.com/bidemiajala/quick-notes/actions/workflows/build.yml) |
+[![Playwright Tests Only](https://github.com/bidemiajala/quick-notes/actions/workflows/playwright.yml/badge.svg)](https://github.com/bidemiajala/quick-notes/actions/workflows/playwright.yml)
 # Quick Notes - QA Engineering Showcase 🧪
 
 Hey there! I'm passionate about **Software Quality** and wanted to create something that really shows what practical, working testing looks like. This Chrome extension for quick note-taking became my playground for exploring **Playwright's** core capabilities and demonstrating solid test automation fundamentals.
