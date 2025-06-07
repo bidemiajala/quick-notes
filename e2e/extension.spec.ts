@@ -22,10 +22,10 @@ test.describe('Quick Notes Extension - Working Functionality', () => {
   test('should display correct initial state', async () => {
     const theme = await extensionPage.getCurrentTheme();
     expect(theme).toBe('dark');
-    
+
     const noteCount = await extensionPage.getNoteCount();
     expect(noteCount).toBeGreaterThan(0);
-    
+
     await expect(extensionPage.charCount).toContainText('0/500');
   });
 
@@ -95,11 +95,11 @@ test.describe('Quick Notes Extension - Working Functionality', () => {
 
   test('should show character limit warning', async () => {
     const nearLimitContent = TestDataManager.TEST_NOTES.long;
-    
+
     await extensionPage.noteEditor.fill(nearLimitContent);
-    
+
     if (nearLimitContent.length > 450) {
       await expect(extensionPage.charCount).toContainText('Approaching limit');
     }
   });
-}); 
+});
