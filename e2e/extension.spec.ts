@@ -52,9 +52,9 @@ test.describe('Quick Notes Extension - Working Functionality', () => {
 
   test('should create note with content', async () => {
     const testContent = TestDataManager.TEST_NOTES.medium;
-    
+
     await extensionPage.createNote(testContent);
-    
+
     await expect(extensionPage.noteEditor).toHaveValue(testContent);
     await expect(extensionPage.charCount).toContainText(`${testContent.length}/500`);
   });
